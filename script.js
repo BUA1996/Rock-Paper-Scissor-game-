@@ -39,7 +39,7 @@ function game(){
     let computerScore = 0;
 
     for (let i = 0; i < 5; i++){
-        const playerSelection = prompt("Enter your choice (rock, paper, or scissor:");
+        //const playerSelection = prompt("Enter your choice (rock, paper, or scissor:");
         const computerSelection = getComputerChoice();
         //console.log(getComputerChoice());
         const result = playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
@@ -68,3 +68,4 @@ function game(){
 }
 
 game();
+
