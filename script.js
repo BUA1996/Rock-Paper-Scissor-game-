@@ -76,17 +76,38 @@ const buttons = document.querySelectorAll('.btn');
 const humanResultElement = document.querySelector('.humanResult');
 const computerResultElement = document.querySelector('.computerResult');
 const resultElement = document.querySelector('.final')
+const resetBtn = document.querySelector('.resetBtn'); 
 let humanResult = 0;
 let computerResult = 0;
 let gameIsOver = false;
+
+//endgame function
+function endGame(winner) {
+    gameIsOver = true;
+    resultElement.textContent = winner + ' Wins!';
+    resetBtn.style.display = 'block'; //displaying button
+};
+
+//resetting the prev results
+function restartGame() {
+    humanResult = 0;
+    computerResult = 0;
+    gameIsOver = false;
+    humanResultElement.textContent = humanResult;
+    computerResultElement.textContent = computerResult;
+    resultElement.textContent = ' ';
+    resetBtn.style.display = 'none'; //hiding button
+};
+
+
 
 buttons.forEach((button) =>{
     button.addEventListener('click', () => {
 
         //Determining game over
         if (gameIsOver) {
-            return;
-        };
+            return; //game over 
+        }
 
         //playing rounds
         const playerSelection = button.getAttribute('data-selection');
@@ -94,6 +115,7 @@ buttons.forEach((button) =>{
         const result = playRound(playerSelection, computerSelection);
         resultElement.textContent = result;
         console.log(result);
+
         //determining the winner during play
         if (result.includes("win")){
             humanResult++;
@@ -101,16 +123,18 @@ buttons.forEach((button) =>{
         } else if (result.includes("lose")){
             computerResult++;
             computerResultElement.textContent = computerResult;
-        };
+        }
 
         //determining the overall winner
-        if (computerResult === 5){
-            resultElement.textContent = 'Computer Win';
-            gameIsOver = true;
-        } else if (humanResult === 5){
-            resultElement.textContent = 'You Win!!';
-            gameIsOver = true;
-        };
+        if (computerResult === 5) {
+            endGame('Computer');
+        } else if (humanResult === 5) {
+            endGame('You');
+        }
     });
 });
 
+//event listener to the button
+resetBtn.addEventListener('click', () => {
+    restartGame();
+});
