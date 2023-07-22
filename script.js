@@ -72,15 +72,45 @@ game();
 
 
 //dom manipulation
-const buttons = document.querySelectorAll('button');
-
+const buttons = document.querySelectorAll('.btn');
+const humanResultElement = document.querySelector('.humanResult');
+const computerResultElement = document.querySelector('.computerResult');
+const resultElement = document.querySelector('.final')
+let humanResult = 0;
+let computerResult = 0;
+let gameIsOver = false;
 
 buttons.forEach((button) =>{
     button.addEventListener('click', () => {
+
+        //Determining game over
+        if (gameIsOver) {
+            return;
+        };
+
         //playing rounds
         const playerSelection = button.getAttribute('data-selection');
         const computerSelection = getComputerChoice();
         const result = playRound(playerSelection, computerSelection);
+        resultElement.textContent = result;
         console.log(result);
+        //determining the winner during play
+        if (result.includes("win")){
+            humanResult++;
+            humanResultElement.textContent = humanResult;
+        } else if (result.includes("lose")){
+            computerResult++;
+            computerResultElement.textContent = computerResult;
+        };
+
+        //determining the overall winner
+        if (computerResult === 5){
+            resultElement.textContent = 'Computer Win';
+            gameIsOver = true;
+        } else if (humanResult === 5){
+            resultElement.textContent = 'You Win!!';
+            gameIsOver = true;
+        };
     });
 });
+
