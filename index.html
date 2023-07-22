@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width" />
         <title>Rock Paper Scissor game</title>
         <link rel="stylesheet" href="style.css"> 
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
 <body>
     <div class="title">
@@ -13,9 +13,9 @@
     </div>
     
     <div class="buttons">
-        <button class="btn">Rock</button>
-        <button class="btn">Paper</button>
-        <button class="btn">Scissor</button>
+        <button id="btn1" data-selection="rock">Rock</button>
+        <button id="btn2" data-selection="paper">Paper</button>
+        <button id="btn3" data-selection="scissor">Scissor</button>
     </div>
 </body>
 </html>

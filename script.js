@@ -33,13 +33,14 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+/*
 function game(){
     //score variables
     let playerScore = 0;
     let computerScore = 0;
 
     for (let i = 0; i < 5; i++){
-        //const playerSelection = prompt("Enter your choice (rock, paper, or scissor:");
+        const playerSelection = prompt("Enter your choice (rock, paper, or scissor:");
         const computerSelection = getComputerChoice();
         //console.log(getComputerChoice());
         const result = playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
@@ -66,6 +67,20 @@ function game(){
         console.log("It's a tie! The game ended in a draw.")
     }
 }
-
 game();
+*/
 
+
+//dom manipulation
+const buttons = document.querySelectorAll('button');
+
+
+buttons.forEach((button) =>{
+    button.addEventListener('click', () => {
+        //playing rounds
+        const playerSelection = button.getAttribute('data-selection');
+        const computerSelection = getComputerChoice();
+        const result = playRound(playerSelection, computerSelection);
+        console.log(result);
+    });
+});
